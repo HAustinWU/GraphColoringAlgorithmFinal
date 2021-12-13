@@ -2,22 +2,20 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <time.h>
-#include <chrono>
-#include <ctime>
-#include <sys/time.h>
 
 using namespace std;
-using chrono::high_resolution_clock;
 
+// Chronological starttimes
 //enum startTime{NULLTIME, M800, M905, M1025, M1145, M1250, M155, M315, M435, T800, T930, T1145, T1250, T220, T350};
+
+// Preferred starttimes
 enum startTime{NULLTIME, M1250, T1250, M1145, T1145, M1025, T930, M905, M155, T220, M315, T350, M435, T800, M800};
                                
 class Class{ //NODE
     public:
         string name, id, prof;
         startTime t;
-        vector<Class*> neighbors; //THINGS CONNECTED BY EDGES
+        vector<Class*> neighbors; // Things connected by edges
         
         Class() : Class("", "", "", NULLTIME){}
         Class(string name) : Class(name, "", "", NULLTIME){}
@@ -30,18 +28,12 @@ class Class{ //NODE
             this->t=t;
         }
         
+        // Set timeslot for current 
         void setT(startTime t){
             this -> t = t;
         }
-        
-        void print(){
-            cout << name << ": " << t;
-            if (prof != ""){
-                cout << prof;
-            }
-            cout << endl;
-        }
 
+        // Add edges between two classes if it doesn't already exist.
         void addNeighbor(Class *c){
             bool has = false;
             for(int i = 0; i < neighbors.size(); i++){
@@ -53,7 +45,6 @@ class Class{ //NODE
             if(!has){
                 neighbors.push_back(c);
                 c->addNeighbor(this);
-                // cout << "Added neighbor between "; printC(); cout << " and "; c->printC(); cout << endl;
             }
         }
         
@@ -99,9 +90,7 @@ class Class{ //NODE
 };
 
 class graph{
-    int nodeCount;
-    int edgeCount;
-
+    int nodeCount, edgeCount;
     vector<Class*> classes;
 
     public:
@@ -123,13 +112,14 @@ class graph{
 
             // If all previously used colors appear on vertices adjacent to v, assign a new color to it.
 
+            // Start our process with an initial assignment. All others are defaulted to NULLTIME
             classes[0]->setT(M1250);
-            //ALL THE REST ARE SET TO NULL
             for (int i = 1; i < nodeCount; i++){
                 classes[i]->color();
             }
         }
 
+        // n^2 edge creation between classes with identical professors
         void neighborProfessors(){
             for(int i = 0; i < classes.size(); i++){
                 for(int j = 0; j < classes.size(); j++){
@@ -139,6 +129,8 @@ class graph{
                 }
             }
         }
+
+        // Print statements for debugging and results output
 
         void print(){
             for(int i = 0; i < nodeCount; i++){
@@ -183,11 +175,6 @@ int main(){
     }
 
     g.neighborProfessors();
-
-    auto t = high_resolution_clock::now();
-
     g.color();
-    cout << "Duration: " << chrono::duration_cast<chrono::microseconds>(high_resolution_clock::now() - t).count() << endl;
     g.print();
-    
 }
