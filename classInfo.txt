@@ -1,0 +1,60 @@
+CS125 BusinessInfoSystems Mao
+CS171 ComputerScience1 Griffith
+CS172 ComputerScience2 Griffith
+CS251 DataScience Jones
+CS273 DataStructures Bell
+CS274 EthicsCS Bell
+CS278 Assembler Bell
+CS301 InternetApps Jones
+CS313 Networks Mao
+CS344 HCI Griffith
+CS370 ProgrammingLanguages Tucker
+CS355 BioInfo Jones
+CS373 WindowsAppsDev Bell
+CS373 DLD Jones
+CS374 Database Tucker
+CS375 MobileApps Jones
+CS401 Architecture Jones
+CS457 AI Mao
+CS471 SoftwareEngineeringSeminar Tucker
+CS472 SoftwareEngineering Tucker
+CS473 Algorithms Jones
+CS475 OperatingSystems Tucker
+CS499 ResearchMethods Jones
+MA150 PreCalc Schepens
+MA171 Calc1 Schepens
+MA172 Calc2 Trefry  
+MA256 ElemProbStats GadyS
+MA273 Calc3 Cochran
+MA278 Discrete Moyer
+MA281 DiffEQ Schepens
+MA306 NonLinearDynamics Schepens
+MA317 Complex Moyer
+MA330 Linear Marcinko
+MA350 NumericalAnalysis Marcinko
+MA352 MathBio Schepens
+MA355 Modeling Schepens
+MA357 MathStats1 GadyM
+MA358 MathStats2 GadyM
+MA360 NumberTheory Marcinko
+MA362 Cryptography Mao
+MA365 Geometry GadyM
+MA410 Abstract1 Trefry
+MA411 Abstract2 Trefry
+MA430 GraphTheory Trefry
+MA440 Reals1 Moyer
+MA441 Reals2 Moyer
+CS357 Graphics Griffith
+
+Electives can be paired with almost anything. Separate electives into another list 
+
+Ignore linear
+
+graph -> stats and NumericalAnalysis
+NumberTheory -> stats1 linear 
+numerical -> Modeling stats2 geometry abstract graph Reals1
+modeling on tth 
+stats1 -> NonLinearDynamics numbertheory abstract1 Reals1
+complex -> modeling, stats2, reals2, geometry
+dld -> ai, 
+DLD, Arch, OS, SE, ALG, DB -> numerical, stats1, GraphTheory 
