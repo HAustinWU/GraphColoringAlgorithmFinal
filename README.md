@@ -27,7 +27,7 @@ The first is fairly simple. If two classes have been historically taken together
 The second qualification for a relationship is just as simple. If two classes have the same professor teaching the class, add a relationship. This ensures that a professor won't be in two places at once.
 
 ## Applications
-## Algorithm 1: Greedy
+## Algorithm 1: Simple Greedy
 
 The greedy approach to this problem is very straightforward. 
 
