@@ -39,10 +39,20 @@ Color the current node with the first available timeslot. Visit the next uncolor
 
 ## Algorithm 2: Welsh Powell
 
-Spacing text for preview
+The Welsh Powell Algorithm is similar to the greedy algorithm, but focuses on coloring based on the degree of nodes.
+
+Store all the nodes in a priority queue based on their degree.
+
+Pop the highest degree node off of the queue and "color it" with the current timeslot.
+
+For each node left in the queue that does not have a timeslot and is not adjacent to a node with the current timeslot, assign the current timeslot to the node and remove it from the queue.
+
+Set the current timeslot to a new timeslot that has not yet been used.
+
+Repeat the above process until all nodes have a timeslot.
 
 # Works Cited
 
 Greedy Algorithm - https://iq.opengenus.org/graph-colouring-greedy-algorithm/
 
-Welsh Powell - {Link}
+Welsh Powell - https://iq.opengenus.org/welsh-powell-algorithm/
