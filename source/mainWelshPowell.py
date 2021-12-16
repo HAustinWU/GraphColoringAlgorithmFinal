@@ -16,7 +16,6 @@ import heapq, itertools
 Q = []                         # list of entries arranged in a heap
 entry_finder = {}               # mapping of vertices to entries
 REMOVED = '<removed-vertex>'      # placeholder for a removed vertex
-# REMOVED = 1     # placeholder for a removed vertex
 counter = itertools.count()     # unique sequence count
 
 #Note: In this case distance = len(concurrents)
@@ -41,10 +40,9 @@ def pop_vertex():
         if vertex is not REMOVED:
             del entry_finder[vertex]
             return vertex
-    #return -1 to indicate removal has occured for this vertex
-    return -1
+    return -1   #  to indicate removal has occured for this vertex
 
-timeBlocks = {-1:"Null",0:"M1250", 1:"T1250", 2:"M1145", 3:"T1145", 4:"M1025", 5:"T930", 6:"M905", 7:"M155", 8:"T220", 9:"M315", 11:"T350", 12:"M435", 13:"T800", 14:"M800"}
+timeBlocks = {-1:"Null",0:"M1250", 1:"T1250", 2:"M1145", 3:"T1145", 4:"M1025", 5:"T930", 6:"M905", 7:"M155", 8:"T220", 9:"M315", 10:"T350", 11:"M435", 12:"T800", 13:"M800"}
 
 class Graph:
     def __init__(self):
@@ -60,9 +58,6 @@ class Graph:
         self.courses.sort(key=lambda x: len(x.concurrents), reverse=True)
        
     def welshPowell(self):
-        # courseQueue = []
-        # for c in self.courses:
-        #     courseQueue.append(c)
         #each i corresponds to a list index of a course
         for i in range(len(self.courses)):
             add_vertex(i,-1*len(self.courses[i].concurrents))
@@ -71,10 +66,8 @@ class Graph:
         while Q:
             top = pop_vertex()
             if top != -1: #top is going to be an index for courses list
-                #print(self.courses[top].ID,"has been added to time block",currentBlock)
                 currentBlock += 1
                 self.courses[top].timeBlock = currentBlock
-            #newList.append(top)
             for c in Q: #c is an entry in Q, c[2] is the vertex
                 flag = False    #flag for if a concurrent.timeblock == currentBlock
                 if c[2] != REMOVED:
@@ -83,11 +76,8 @@ class Graph:
                             flag = True #currentblock found in concurrents
                             break
                     if flag == False:   # no concurrent with currentBlock was found
-                        #print(self.courses[c[2]].ID,"has been added to time block",currentBlock)
                         self.courses[c[2]].timeBlock = currentBlock
-                        #newList.append(course)
                         remove_vertex(c[2])
-        #self.courses = newList 
         return(currentBlock)               
          
 class Course:
@@ -102,7 +92,7 @@ class Course:
     def __repr__(self):
         return self.ID
 
-with open('classInfo.txt','r') as classList, open('input.txt','r') as concurrentClasses:
+with open('./GraphColoringAlgorithmFinal/classInfo.txt','r') as classList, open('./GraphColoringAlgorithmFinal/input.txt','r') as concurrentClasses:
     numClasses = int(concurrentClasses.readline())
     algoGraph = Graph()
     
@@ -134,71 +124,3 @@ with open('classInfo.txt','r') as classList, open('input.txt','r') as concurrent
     numBlocks = algoGraph.welshPowell()
     print(algoGraph)
     print("Welsh-Powell was able to schedule all courses in",numBlocks,"time blocks!")
-
-# Demo data:
-
-# A = Course("A","algo","prof1")
-# B = Course("B","dld","prof2")
-# C = Course("C","math1","prof3")
-# D = Course("D","math2","prof4")
-# E = Course("E","abstract","prof5")
-# F = Course("F","calc3","prof6")
-# G = Course("G","discrete","prof7")
-# H = Course("H","linear","prof8")
-# I = Course("I","testing","prof9")
-# J = Course("J","database","prof10")
-
-# H.concurrents.append(E)
-# H.concurrents.append(I)
-# H.concurrents.append(J)
-# H.concurrents.append(G)
-
-# E.concurrents.append(D)
-# E.concurrents.append(F)
-# E.concurrents.append(H)
-
-# C.concurrents.append(A)
-# C.concurrents.append(B)
-# C.concurrents.append(D)
-
-# I.concurrents.append(J)
-# I.concurrents.append(H)
-
-# J.concurrents.append(I)
-# J.concurrents.append(H)
-
-# D.concurrents.append(E)
-# D.concurrents.append(C)
-
-# F.concurrents.append(E)
-
-# G.concurrents.append(H)
-
-# B.concurrents.append(C)
-
-# A.concurrents.append(C)
-
-# G1 = Graph()
-# G1.addCourse(A)
-# G1.addCourse(B)
-# G1.addCourse(C)
-# G1.addCourse(D)
-# G1.addCourse(E)
-# G1.addCourse(F)
-# G1.addCourse(G)
-# G1.addCourse(H)
-# G1.addCourse(I)
-# G1.addCourse(J)
-
-# # #G1.sort()
-# # print(G1)
-# G1.sort()
-# G1.welshPowell()
-# print(G1)
-
-# # h = []
-# # for course in G1.courses:
-# #     heappush(h,(-1*len(course.concurrents),course))
-
-# # for c in h:
-# #     print(heappop(c))
